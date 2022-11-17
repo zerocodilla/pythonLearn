@@ -1,0 +1,8 @@
+Laura:
+	'I like it'.
+Mark:
+	'I feel my power'.
+John:
+	'I have a great job'.
+Marcia:
+	'I can work remotely'.

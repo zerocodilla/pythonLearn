@@ -1,0 +1,4 @@
+In Python, you can analyse big data.
+In Python, you can create readable code.
+In Python, you can use many libraries.
+In Python, you can ask for help the community.

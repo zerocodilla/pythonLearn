@@ -1,0 +1,7 @@
+ll_env/
+__pycache__/
+*.sqlite3
+game.py
+theory
+sandbox.py
+.DS_Store
