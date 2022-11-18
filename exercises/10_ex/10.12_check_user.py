@@ -47,5 +47,3 @@ def check_user():
         username = get_new_username()
     return username
 
-
-greet_user()
