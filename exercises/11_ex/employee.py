@@ -1,4 +1,4 @@
-class Employee():
+class Employee:
     """Represent employee."""
 
     def __init__(self, first, last, annual_salary):
