@@ -1,32 +1,28 @@
 import sys
-
 import pygame
+from gun import Gun
 from settings import Settings
-from ship import Ship
-from planet import Planet
 from bullet import Bullet
 
 
-class AlienInvasion:
-    """Class for resources management and game behaviour."""
+class GunGame:
+    """Class for representing the gun game."""
 
     def __init__(self):
         """Initialize game and create resources for game."""
         self.settings = Settings()
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width, self.settings.screen_height))
-        pygame.display.set_caption("Alien Invasion")
-        # Make a ship
-        self.ship = Ship(self)
+        pygame.display.set_caption("Gun Game")
+        self.bg_color = (230, 230, 230)
+        self.gun = Gun(self)
         self.bullets = pygame.sprite.Group()
-        # Add a planet
-        self.planet = Planet(self)
 
     def run_game(self):
         """Start the main loop for the game"""
         while True:
             self._check_events()
-            self.ship.update()
+            self.gun.update()
             self._update_bullets()
             self._update_screen()
 
@@ -42,10 +38,10 @@ class AlienInvasion:
 
     def _check_keydown_events(self, event):
         """Respond to keypresses."""
-        if event.key == pygame.K_RIGHT:
-            self.ship.moving_right = True
-        elif event.key == pygame.K_LEFT:
-            self.ship.moving_left = True
+        if event.key == pygame.K_UP:
+            self.gun.moving_up = True
+        elif event.key == pygame.K_DOWN:
+            self.gun.moving_down = True
         elif event.key == pygame.K_q:
             sys.exit()
         elif event.key == pygame.K_SPACE:
@@ -53,10 +49,10 @@ class AlienInvasion:
 
     def _check_keyup_events(self, event):
         """Respond to key releases."""
-        if event.key == pygame.K_RIGHT:
-            self.ship.moving_right = False
-        elif event.key == pygame.K_LEFT:
-            self.ship.moving_left = False
+        if event.key == pygame.K_UP:
+            self.gun.moving_up = False
+        elif event.key == pygame.K_DOWN:
+            self.gun.moving_down = False
 
     def _fire_bullet(self):
         """Create a new bullet and adding to the bullets group."""
@@ -70,21 +66,19 @@ class AlienInvasion:
         self.bullets.update()
         # Get rid of bullets that have disappeared.
         for bullet in self.bullets.copy():
-            if bullet.rect.bottom <= 0:
-                self.bullets.remove(bullet)
+            if bullet.rect.left >= self.screen.get_rect().right:
+                 self.bullets.remove(bullet)
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
-        self.screen.fill(self.settings.bg_color)
-        self.ship.blitme()
-        self.planet.blitme()
+        self.screen.fill(self.gun.settings.bg_color)
+        self.gun.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
-
         pygame.display.flip()
+
 
 if __name__ == '__main__':
     # Create a game sample and run
-    ai = AlienInvasion()
-    ai.run_game()
-
+    gg = GunGame()
+    gg.run_game()
