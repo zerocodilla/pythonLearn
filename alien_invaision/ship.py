@@ -25,7 +25,7 @@ class Ship:
         self.moving_left = False
 
         # Ship settings
-        self.ship_speed = 1.5
+        self.ship_speed = 2
 
     def update(self):
         """Update the ship's position based on the movement flag."""
