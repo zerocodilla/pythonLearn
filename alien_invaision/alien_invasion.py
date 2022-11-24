@@ -131,12 +131,10 @@ class AlienInvasion:
         self._check_fleet_edges()
         self.aliens.update()
 
-
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
         self.screen.blit(self.settings.bg, (0, 0))
         self.ship.blitme()
-        # self.planet.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
