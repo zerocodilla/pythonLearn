@@ -18,4 +18,5 @@ class Settings:
         self.fleet_drop_speed = 10
         self.fleet_direction = 1
         self.alien_frequency = 0.008
-        self.alien_speed = 1.5
+        self.alien_speed = 50
+        self.ship_limit = 3
