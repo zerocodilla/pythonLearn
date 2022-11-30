@@ -1,8 +1,9 @@
 import sys
+from time import sleep
 from random import random
 
 import pygame
-
+from game_stats import GameStats
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
@@ -19,7 +20,7 @@ class SidewaysShooter:
         self.screen = pygame.display.set_mode(
                 (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Sideways Shooter")
-
+        self.stats = GameStats(self)
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
@@ -30,13 +31,12 @@ class SidewaysShooter:
             self._check_events()
 
             # Consider creating a new alien.
-            self._create_alien()
-
-
-            self.ship.update()
-            self._update_bullets()
-            self.aliens.update()
-            self._update_screen()
+            if self.stats.game_active:
+                self._create_alien()
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
+                self._update_screen()
 
     def _check_events(self):
         """Respond to keypresses and mouse events."""
@@ -95,6 +95,46 @@ class SidewaysShooter:
             alien = Alien(self)
             self.aliens.add(alien)
             print(len(self.aliens))
+
+    def _update_aliens(self):
+        """Update aliens fleet position."""
+        self.aliens.update()
+
+        # Check collisions alien - ship
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            self._ship_hit()
+
+        # Check if aliens reached the left.
+        self._check_aliens_left()
+
+    def _ship_hit(self):
+        """Process alien - ship hit."""
+        if self.stats.ships_left > 0:
+            # decrease ship_left
+            self.stats.ships_left -= 1
+
+            # Empty aliens and bullets lists
+            self.aliens.empty()
+            self.bullets.empty()
+
+            # create a new fleet and set the ship in the centre
+            self._create_alien()
+            self.ship.center_ship()
+
+            # Pause
+            sleep(0.5)
+        else:
+            self.stats.game_active = False
+
+    def _check_aliens_left(self):
+        """Check if aliens reached the left."""
+        screen_rect = self.screen.get_rect()
+        for alien in self.aliens.sprites():
+            if alien.rect.left <= screen_rect.left:
+                # the same as due to alien - ship hit
+                self._ship_hit()
+                break
+
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
