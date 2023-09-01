@@ -18,7 +18,12 @@ print(f"laura's favorite number is {favorite_numbers['laura']}")
 print(f"Natasha's favorite number is {favorite_numbers['natasha']}")
 print(f"Vera's favorite number is {favorite_numbers['vera']}")
 
+# better solution
+for keys, value in favorite_numbers.items():
+    print(f"{keys.title()}'s favorite number is {value}.")
+
 # 6.3
+print(6.3)
 terms = {
     'tuple': 'is an ordered, immutable collection of data in ().',
     'list': 'is an ordered, mutable collection of objects in [].',
@@ -26,7 +31,7 @@ terms = {
     'if_statement': 'is condition.',
     'loop': 'is used for iterating over a sequence.'
 }
-print(f"Tuple {terms['tuple']}")
+print(f"\nTuple {terms['tuple']}")
 print(f"\nList {terms['list']}")
 print(f"\nDictionary {terms['dictionary']}")
 print(f"\nIf-statement {terms['if_statement']}")
@@ -115,6 +120,7 @@ for name, numbers in favorite_numbers.items():
     print(f"{name.title()}'s favorite numbers are:")
     for number in numbers:
         print(f"\t{number}")
+
 
 # 6.11
 cities = {
