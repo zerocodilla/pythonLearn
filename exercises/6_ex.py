@@ -21,6 +21,7 @@ print(f"Vera's favorite number is {favorite_numbers['vera']}")
 # better solution
 for keys, value in favorite_numbers.items():
     print(f"{keys.title()}'s favorite number is {value}.")
+print('test')
 
 # 6.3
 print(6.3)
