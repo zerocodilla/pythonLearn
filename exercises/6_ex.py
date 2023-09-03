@@ -18,11 +18,6 @@ print(f"laura's favorite number is {favorite_numbers['laura']}")
 print(f"Natasha's favorite number is {favorite_numbers['natasha']}")
 print(f"Vera's favorite number is {favorite_numbers['vera']}")
 
-# better solution
-for keys, value in favorite_numbers.items():
-    print(f"{keys.title()}'s favorite number is {value}.")
-print('test2')
-
 # 6.3
 print(6.3)
 terms = {
