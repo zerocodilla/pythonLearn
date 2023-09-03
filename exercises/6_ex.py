@@ -137,3 +137,8 @@ cities = {
         'fact': 'famous for scissors and knifes production'
     }
 }
+
+for city, city_info in cities.items():
+    print(f"{city.title()} is the city in {city_info['country'].title()}"
+    f" with population {city_info['population']}."
+    f"\n{city.title()} is {city_info['fact']}.")
