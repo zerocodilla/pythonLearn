@@ -93,6 +93,7 @@ angel = {
 pets = [chappy, felix, angel]
 for pet in pets:
     print(pet)
+print('test')
 
 # 6.9
 favorite_restaurants = {
