@@ -23,3 +23,7 @@ admin = AUM.Admin('John', 'Smith', '41', 'London', 9,)
 admin.describe_user()
 admin.privileges.show_privileges()
 
+
+my_admin = AUM.Admin('Justin', 'Case', '33', 'London', 9)
+my_admin.privileges
+my_admin.privileges.show_privileges()

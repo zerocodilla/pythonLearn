@@ -101,7 +101,7 @@ while True:
     if name == 'q':
         break
 
-    album = make_album({artist}, {name})
+    album = make_album(artist, name)
     print(album)
 
 
