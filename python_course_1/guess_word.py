@@ -84,7 +84,7 @@ def display_hangman(tries):
 
 
 def play(word):
-    word_completion = ['_' for i in word] # word pattern
+    word_completion = ['_' for _ in word]  # word pattern
     guessed = False
     guessed_letters = []
     guessed_words = []
@@ -129,6 +129,7 @@ def play(word):
             break
         print(display_hangman(tries))
 
+
 def main():
     while True:
         play(get_word())
@@ -139,6 +140,3 @@ def main():
 
 if __name__ in '__main__':
     main()
-
-
-
