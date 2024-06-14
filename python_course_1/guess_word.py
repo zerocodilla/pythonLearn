@@ -102,29 +102,43 @@ def play(word):
 
         if len(s) == 1:
             guessed_letters.append(s)
-            tries -= 1
+            if s in word:
+                for letter in guessed_letters:
+                    for i in range(len(word)):
+                        if letter == word[i]:
+                            word_completion[i] = letter
+                print(*word_completion, sep='')
+            else:
+                print(*word_completion, sep='')
+                tries -= 1
 
-            for letter in guessed_letters:
-                for i in range(len(word)):
-                    if letter == word[i]:
-                        word_completion[i] = letter
-            print(*word_completion, sep='')
         else:
             guessed_words.append(s)
-            tries -= 1
             if s == word:
                 word_completion = s
+            else:
+                print(*word_completion, sep='')
+                tries -= 1
 
         if ''.join(word_completion) == word:
             print("Congratulations! You guessed the word.")
             break
         if tries == 0:
+            print(display_hangman(tries))
             print(f"You have used all tries. The word was {word}.")
+            break
+        print(display_hangman(tries))
+
+def main():
+    while True:
+        play(get_word())
+        repeat = input("Enter 'y' if you want to play again, or 'q' to quit ")
+        if repeat == 'q':
             break
 
 
-# if __name__ in '__main__':
-#     main()
+if __name__ in '__main__':
+    main()
 
 
-play(get_word())
+
